@@ -31,11 +31,12 @@
       <ul class="nav navbar-nav">
         <li><a href="./index.php" target="_top">我的商城后台</a></li>
         <li><a href="./user/index.php" target="main">用户管理</a></li>
-        <li><a href="#">分类管理</a></li>
+        <li><a href="./category/index.php" target="main">分类管理</a></li>
         <li><a href="#">商品管理</a></li>
         <li><a href="#">订单管理</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="../index.php" target="_top">回商城首页</a></li>
         <li><a href="#">最近登录时间: <?php echo date('Y年m月d日 H:i:s') ?></a></li>
         <li><a href="#">用户: <?php echo $_SESSION['admin']['name'] ?></a></li>
         <li><a href="./logout.php" target="_top">退出</a></li>

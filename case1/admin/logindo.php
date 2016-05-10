@@ -21,7 +21,7 @@
     $sql = "SELECT `id`,`name`,`pwd` FROM ".PRE."admin_user WHERE `name`='$name'";
 
     $row = query($link, $sql);
-
+    
     if ($row) {
         //如果有数据,说明用户存在
         $row = $row[0];
@@ -46,5 +46,4 @@
         exit;
     }
 
-
-
+   

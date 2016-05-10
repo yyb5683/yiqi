@@ -105,7 +105,7 @@
         //执行SQL语句
         $result = mysqli_query($link,$sql);
         //判断执行结果
-        if ($result) {
+        if ($result &&mysqli_num_rows($result)>0) {
             $list = array();
             $list = mysqli_fetch_all($result,MYSQLI_ASSOC);
             mysqli_free_result($result);

@@ -1,13 +1,70 @@
 <?php 
     require '../init.php';
 
-    
+    $where = '';
+    $urlname = '';
+    $name = '';
+    if (isset($_GET['name']) && !empty($_GET['name'])) {
+        $name = $_GET['name'];
+        $where = "WHERE `name` LIKE '%$name%'";//SQL查询条件
+        $urlname = "&name=$name";//url的参数
+    }
+
+    //分页开始
+    //总记录数
+     $sql = "SELECT count(*) total FROM s47_user $where";
+    $row = query($link, $sql);
+    $total = $row[0]['total'];
+    //每页显示数
+    $num = 5;
+    //总页数
+    $allpage = ceil($total / $num);
+
+    //获取页码
+    $page = isset($_GET['page'])?(int)$_GET['page']:1;
+    //限制页码范围
+    //页码:不能小于1 不能大于$allpage
+    $page = max(1,$page);//[0,1]
+    $page = min($page,$allpage);//[接收的页数,总页数]
+
+    //获取偏移量
+    $offset = ($page-1) * $num;
+    //获取上一夜/下一夜
+    $prev = $page - 1;
+    $next = $page + 1;
+
+    //控制数组页码的显示
+    $start = max($page - 2, 1);
+    $end = min($page + 2, $allpage);
+
+    $pageurl = 'index.php';
+    //产生数字链接
+    $num_link = '';
+    for ($i = $start; $i <= $end; $i++) {
+        if ($page == $i) {
+            $num_link .= '<li class="active"><a href="./'.$pageurl.'?page='.$i.$urlname.'">'.$i.'</a></li>';
+            continue;
+        }
+        $num_link .= '<li><a href="./'.$pageurl.'?page='.$i.$urlname.'">'.$i.'</a></li>';
+    }
+    echo '<hr>';
     //5.SQL语句
-    $sql = "SELECT `id`,`name`,`tel`,`sex`,`email`,`logincount` FROM ".PRE."user";
+    
+
+    
+    $sql = "SELECT `id`,`name`,`tel`,`sex`,`email`,`logincount` 
+    FROM ".PRE."user $where LIMIT $offset,$num";
+
     //处理结果集
     $user_list = query($link,$sql);
+    // echo'<pre>';
+    // print_r($user_list);
+    // exit;
+    //显示当前页查询到的记录数量
+    $rows = mysqli_affected_rows($link);
 
 
+    
     //8.关闭MYSQL连接
     mysqli_close($link);
 
@@ -33,7 +90,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1>用户信息表</h1>
+            <h2>用户信息表</h2>
             <nav class="navbar">
               <div class="container-fluid">
                 <div class="collapse navbar-collapse">
@@ -41,11 +98,11 @@
                     <li><a href="./index.php">用户列表</a></li>
                     <li><a href="./add.php">添加前台用户</a></li>
                   </ul>
-                  <form class="navbar-form navbar-left" action="./cha.php"method="post">
+                  <form class="navbar-form navbar-left" >
                     <div class="form-group">
-                      <input type="text" class="form-control" name="name" placeholder="输入您要查找的姓名">  
+                      <input type="text" name="name" class="form-control" placeholder="按用户名搜索">
                     </div>
-                    <input type="submit" class="btn btn-default"></input>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                   </form>
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
@@ -99,9 +156,8 @@
                     </tr>
                 <?php endforeach ?>
                 <?php endif ?>
-                
-                
             </table>
+            <?php require ADMIN_PATH.'../com/page.php'; ?>
         </div>
     </div>
 

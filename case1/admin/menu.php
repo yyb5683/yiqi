@@ -47,8 +47,8 @@
       <div class="list-group">
           <a href="./user/index.php" target="main" class="list-group-item">前台用户列表</a>
           <a href="./user/add.php" target="main" class="list-group-item">添加前台用户</a>
-          <a href="#" class="list-group-item">后台用户列表</a>
-          <a href="#" class="list-group-item">添加后台用户</a>
+          <a href="./user/index2.php" target="main" class="list-group-item">后台用户列表</a>
+          <a href="./user/admin_add.php"  target="main" class="list-group-item">添加后台用户</a>
       </div>
     </div>
   </div>
@@ -63,8 +63,8 @@
     </div>
     <div id="menu2" class="panel-collapse collapse">
       <div class="list-group">
-          <a href="#" class="list-group-item">分类列表</a>
-          <a href="#" class="list-group-item">添加分类</a>
+          <a href="./category/index.php" target="main" class="list-group-item">分类列表</a>
+          <a href="./category/add.php" target="main" class="list-group-item">添加顶级分类分类</a>
       </div>
     </div>
   </div>

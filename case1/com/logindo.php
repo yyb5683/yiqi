@@ -21,6 +21,10 @@
 
     $row = query($link, $sql);
 
+    // echo '<pre>';
+    // print_r($row);
+    // exit;
+
     if ($row) {
         //如果有数据,说明用户存在
         $row = $row[0];
@@ -33,6 +37,11 @@
 
             //将用户的ID,name放在session
             $_SESSION['home'] = $row;
+            // $id =$_SESSION['home']['id'];
+            // $arr = $_SESSION['home']['logincount']+1;
+            // $sql = "UPDATE ".PRE." user SET `logincount`=$arr WHERE `id`='$id'";
+            // $r = mysqli_query($link,$sqli);
+
             redirect('登录成功!',URL.'index.php',1);
             exit;
         }else{

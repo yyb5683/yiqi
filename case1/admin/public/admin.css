@@ -44,3 +44,7 @@ a:active{
 #yh{
     margin-top:170px;
 }
+
+
+.fengo{display: inline;}
+.fengo select{width:55px;height:42px;}
