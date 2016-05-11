@@ -62,7 +62,7 @@
             }
             $sql = "INSERT INTO ".PRE."category (`cname`,`pid`,`path`) VALUES('$name','$pid','$path')";
             if (execute($link, $sql)) {
-                admin_redirect('添加成功','./index.php');
+                admin_redirect('添加成功','./index.php',10000);
                 exit;
             }else{
                 admin_redirect('添加失败');

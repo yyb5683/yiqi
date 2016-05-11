@@ -9,7 +9,7 @@
     <title>跳转页面</title>
 
     <!-- Bootstrap -->
-    <link href="./public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo ADMIN_URL ?>public/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>

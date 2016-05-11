@@ -83,8 +83,8 @@
     </div>
     <div id="menu3" class="panel-collapse collapse">
       <div class="list-group">
-        <a href="#" class="list-group-item">商品列表</a>
-        <a href="#" class="list-group-item">添加商品</a>
+        <a href="./goods/index.php" target="main" class="list-group-item">商品列表</a>
+        <a href="./goods/add.php" target="main" class="list-group-item">添加商品</a>
     </div>
     </div>
   </div>
